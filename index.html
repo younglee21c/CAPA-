@@ -814,7 +814,7 @@
           </div>
           <div class="kpi-card">
             <span class="kpi-label">1회 사이클 타임</span>
-            <span class="kpi-value" id="kpiCycleTime">—</span>
+            <span class="kpi-value" id="kpiCycleTime" style="font-size:16px; line-height:1.5;">—</span>
           </div>
           <div class="kpi-card">
             <span class="kpi-label">UPH (부하율 반영)</span>
@@ -1049,7 +1049,10 @@
 
     els.kpiBasis.innerHTML =
       '투입 <strong>' + workers + '명</strong> · 순가동 <strong>' + dailyNetHours.toFixed(1) + 'h</strong> · 연 <strong>' + annualDays + '일</strong>';
-    els.kpiCycleTime.innerHTML = singleCT.toFixed(2) + ' <span class="unit">초</span>';
+    var workerCycleTime = singleCT / workers;
+    els.kpiCycleTime.innerHTML =
+      '1명 <strong>' + singleCT.toFixed(2) + '</strong> <span class="unit">초</span><br>' +
+      workers + '명 <strong>' + workerCycleTime.toFixed(2) + '</strong> <span class="unit">초</span>';
     els.kpiUPH.innerHTML = uph.toFixed(1) + ' <span class="unit">개/h</span>';
     els.kpiAnnualCapa.innerHTML = annualCapa.toLocaleString() + ' <span class="unit">개</span>';
 
