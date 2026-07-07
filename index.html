@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1e40af">
+<meta name="theme-color" content="#0f172a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="생산CAPA">
@@ -16,9 +16,14 @@
 <style>
   :root {
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --blue-600: #2563eb;
-    --blue-700: #1d4ed8;
-    --blue-50: #eff6ff;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-light: #eff6ff;
+    --accent-text: #1e40af;
+    --green: #059669;
+    --green-light: #ecfdf5;
+    --red: #dc2626;
+    --red-light: #fef2f2;
     --zinc-50: #fafafa;
     --zinc-100: #f4f4f5;
     --zinc-200: #e4e4e7;
@@ -30,11 +35,12 @@
     --zinc-800: #27272a;
     --zinc-900: #18181b;
     --zinc-950: #09090b;
-    --radius: 8px;
+    --radius: 10px;
     --radius-sm: 6px;
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --ring: 0 0 0 1px rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.04);
+    --shadow: 0 2px 8px rgb(0 0 0 / 0.06);
+    --shadow-lg: 0 4px 16px rgb(0 0 0 / 0.08);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,7 +53,7 @@
   }
 
   body {
-    background: var(--zinc-50);
+    background: #f0f1f3;
     color: var(--zinc-900);
     line-height: 1.6;
     font-size: 16px;
@@ -55,131 +61,127 @@
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
-  /* Header */
   .header {
-    background: white;
-    border-bottom: 1px solid rgb(0 0 0 / 0.06);
-    padding: 16px 20px;
+    background: var(--zinc-950);
+    padding: 20px 20px 24px;
     position: sticky;
     top: 0;
     z-index: 50;
   }
   .header-inner {
-    max-width: 960px;
+    max-width: 720px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
   .header-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--blue-600);
-    border-radius: var(--radius-sm);
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .header-icon svg { width: 18px; height: 18px; color: white; }
+  .header-icon svg { width: 20px; height: 20px; color: white; }
   .header h1 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     letter-spacing: -0.01em;
-    color: var(--zinc-900);
+    color: white;
   }
   .header p {
     font-size: 13px;
-    color: var(--zinc-500);
-    display: none;
-  }
-  @media (min-width: 640px) {
-    .header p { display: block; }
+    color: var(--zinc-400);
+    margin-top: 1px;
   }
 
-  /* Main layout */
   .main {
-    max-width: 960px;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 24px 16px 48px;
+    padding: 20px 16px 48px;
   }
   @media (min-width: 640px) {
-    .main { padding: 32px 24px 64px; }
+    .main { padding: 28px 24px 64px; }
   }
 
-  /* Section */
   .section {
     background: white;
     border-radius: var(--radius);
     box-shadow: var(--ring), var(--shadow-sm);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
   }
   .section-header {
-    padding: 16px 20px 12px;
-    border-bottom: 1px solid rgb(0 0 0 / 0.06);
+    padding: 14px 18px 12px;
     display: flex;
     align-items: center;
     gap: 8px;
+    border-bottom: 1px solid rgb(0 0 0 / 0.05);
   }
   .section-header svg {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     color: var(--zinc-400);
     flex-shrink: 0;
   }
   .section-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    color: var(--zinc-700);
-    letter-spacing: -0.005em;
+    color: var(--zinc-600);
+    letter-spacing: 0.01em;
   }
-  .section-body {
-    padding: 16px 20px 20px;
-  }
+  .section-body { padding: 16px 18px 18px; }
 
-  /* Form grid */
   .form-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
   @media (min-width: 640px) {
-    .form-grid { grid-template-columns: 1fr 1fr; gap: 16px 20px; }
+    .form-grid { grid-template-columns: 1fr 1fr; gap: 14px 18px; }
     .form-grid .full-width { grid-column: 1 / -1; }
   }
 
-  /* Form field */
-  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
   .field label {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--zinc-600);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--zinc-500);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     user-select: none;
   }
   .field .hint {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--zinc-400);
-    margin-top: -2px;
+    margin-top: -3px;
+    text-transform: none;
+    font-weight: 400;
+    letter-spacing: 0;
   }
   .field input, .field select {
-    height: 40px;
+    height: 44px;
     padding: 0 12px;
     font-size: 16px;
     font-family: var(--font-sans);
     color: var(--zinc-900);
-    background: white;
+    background: var(--zinc-50);
     border: 1px solid var(--zinc-200);
     border-radius: var(--radius-sm);
     outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
     width: 100%;
   }
   @media (min-width: 640px) {
-    .field input, .field select { font-size: 14px; height: 36px; }
+    .field input, .field select { font-size: 14px; height: 40px; }
   }
   .field input:focus, .field select:focus {
-    border-color: var(--blue-600);
-    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.12);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+    background: white;
   }
   .field input::placeholder { color: var(--zinc-400); }
   .field input[type="number"] {
@@ -192,34 +194,33 @@
     margin: 0;
   }
 
-  /* Inline group */
   .inline-group {
     display: flex;
     align-items: flex-end;
-    gap: 8px;
+    gap: 6px;
   }
   .inline-group .field { flex: 1; }
   .inline-group .unit {
-    height: 40px;
+    height: 44px;
     display: flex;
     align-items: center;
     font-size: 13px;
     color: var(--zinc-500);
     flex-shrink: 0;
-    padding-bottom: 1px;
+    font-weight: 500;
   }
   @media (min-width: 640px) {
-    .inline-group .unit { height: 36px; }
+    .inline-group .unit { height: 40px; }
   }
 
-  /* Cycle time sub-section */
   .cycle-box {
     background: var(--zinc-50);
     border-radius: var(--radius-sm);
-    padding: 16px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    border: 1px solid var(--zinc-100);
   }
   .cycle-row {
     display: grid;
@@ -229,9 +230,14 @@
   @media (max-width: 639px) {
     .cycle-row { grid-template-columns: 1fr; }
   }
-  .cycle-result {
+  .cycle-results {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cycle-result-row {
     padding: 8px 12px;
-    background: var(--blue-50);
+    background: var(--accent-light);
     border-radius: var(--radius-sm);
     font-size: 13px;
     color: var(--zinc-700);
@@ -239,13 +245,12 @@
     justify-content: space-between;
     align-items: center;
   }
-  .cycle-result .value {
+  .cycle-result-row .value {
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-    color: var(--blue-700);
+    color: var(--accent-text);
   }
 
-  /* Year plan */
   .year-plan-header {
     display: flex;
     justify-content: space-between;
@@ -254,50 +259,47 @@
     flex-wrap: wrap;
     gap: 8px;
   }
-  .year-plan-header .left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
   .year-plan-header .left span {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--zinc-500);
   }
   .year-rows { display: flex; flex-direction: column; gap: 8px; }
   .year-row {
     display: grid;
-    grid-template-columns: 80px 1fr 48px;
+    grid-template-columns: 72px 1fr 40px;
     gap: 8px;
     align-items: center;
   }
   .year-row .year-label {
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--zinc-600);
     font-variant-numeric: tabular-nums;
   }
   .year-row input {
-    height: 40px;
+    height: 44px;
     padding: 0 10px;
     font-size: 16px;
     font-family: var(--font-sans);
     font-variant-numeric: tabular-nums;
     color: var(--zinc-900);
-    background: white;
+    background: var(--zinc-50);
     border: 1px solid var(--zinc-200);
     border-radius: var(--radius-sm);
     outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
     width: 100%;
   }
+  @media (min-width: 640px) {
+    .year-row input { font-size: 14px; height: 40px; }
+  }
   .year-row input:focus {
-    border-color: var(--blue-600);
-    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.12);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+    background: white;
   }
   .year-row input::placeholder { color: var(--zinc-400); }
-  @media (min-width: 640px) {
-    .year-row input { font-size: 14px; height: 36px; }
-  }
+
   .remove-year-btn {
     width: 44px;
     height: 44px;
@@ -305,214 +307,265 @@
     align-items: center;
     justify-content: center;
     background: none;
-    border: 1px solid var(--zinc-200);
+    border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
     color: var(--zinc-400);
-    transition: color 0.15s, border-color 0.15s;
+    transition: color 0.15s, background 0.15s;
     flex-shrink: 0;
   }
-  .remove-year-btn:hover { color: #ef4444; border-color: #fca5a5; }
-  .remove-year-btn:focus-visible {
-    outline: 2px solid var(--blue-600);
-    outline-offset: 2px;
-  }
+  .remove-year-btn:hover { color: var(--red); background: var(--red-light); }
+  .remove-year-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .remove-year-btn svg { width: 16px; height: 16px; }
 
-  /* Add year button */
   .add-year-btn {
     display: inline-flex;
     align-items: center;
     gap: 4px;
     padding: 6px 12px;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 600;
     font-family: var(--font-sans);
-    color: var(--blue-600);
+    color: var(--accent);
     background: none;
     border: 1px dashed var(--zinc-300);
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: border-color 0.15s, background 0.15s;
   }
-  .add-year-btn:hover { background: var(--blue-50); border-color: var(--blue-600); }
-  .add-year-btn:focus-visible {
-    outline: 2px solid var(--blue-600);
-    outline-offset: 2px;
-  }
+  .add-year-btn:hover { background: var(--accent-light); border-color: var(--accent); }
+  .add-year-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .add-year-btn svg { width: 14px; height: 14px; }
 
-  /* Calculate button */
   .calc-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     width: 100%;
-    height: 48px;
-    font-size: 16px;
+    height: 50px;
+    font-size: 15px;
     font-weight: 600;
     font-family: var(--font-sans);
     color: white;
-    background: var(--blue-600);
+    background: var(--zinc-950);
     border: none;
     border-radius: var(--radius);
     cursor: pointer;
-    transition: background 0.15s;
-    margin-top: 8px;
+    transition: background 0.15s, transform 0.1s;
+    margin-top: 4px;
+    letter-spacing: -0.005em;
   }
-  .calc-btn:hover { background: var(--blue-700); }
+  .calc-btn:hover { background: var(--zinc-800); }
   .calc-btn:active { transform: scale(0.99); }
-  .calc-btn:focus-visible {
-    outline: 2px solid var(--blue-600);
-    outline-offset: 2px;
-  }
-  .calc-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  @media (min-width: 640px) {
-    .calc-btn { height: 44px; font-size: 15px; }
-  }
+  .calc-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .calc-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   .calc-btn svg { width: 18px; height: 18px; }
 
-  /* Results */
   .results-section { display: none; }
   .results-section.visible { display: block; }
 
-  /* Summary stats */
-  .summary-stats {
+  .kpi-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1px;
-    background: rgb(0 0 0 / 0.06);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--ring);
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
   @media (min-width: 640px) {
-    .summary-stats { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
   }
-  .stat-item {
-    background: white;
-    padding: 16px 20px;
+  .kpi-card {
+    background: var(--zinc-50);
+    border: 1px solid var(--zinc-100);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
-  .stat-label {
-    font-size: 12px;
-    font-weight: 500;
+  .kpi-label {
+    font-size: 10px;
+    font-weight: 600;
     color: var(--zinc-500);
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
   }
-  .stat-value {
-    font-size: 24px;
+  .kpi-value {
+    font-size: 20px;
     font-weight: 600;
     color: var(--zinc-900);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
+    line-height: 1.3;
   }
-  .stat-unit {
-    font-size: 13px;
-    font-weight: 400;
+  .kpi-value .unit {
+    font-size: 12px;
+    font-weight: 500;
     color: var(--zinc-500);
   }
+  .kpi-card.basis .kpi-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--zinc-700);
+    line-height: 1.6;
+  }
+  .kpi-card.basis .kpi-value strong {
+    font-weight: 700;
+    color: var(--zinc-900);
+  }
 
-  /* Results table */
-  .table-wrap {
+  /* PC: table */
+  .results-table-wrap {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 0 -20px;
-    padding: 0 20px;
+    margin: 0 -18px;
+    padding: 0 18px;
   }
   .results-table {
     width: 100%;
     border-collapse: collapse;
     font-variant-numeric: tabular-nums;
-    min-width: 600px;
   }
   .results-table th {
     text-align: left;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: 600;
     color: var(--zinc-500);
-    padding: 8px 12px;
+    padding: 8px 10px;
     white-space: nowrap;
-    border-bottom: 1px solid rgb(0 0 0 / 0.08);
+    border-bottom: 2px solid var(--zinc-100);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
   .results-table td {
-    font-size: 14px;
-    padding: 10px 12px;
+    font-size: 13px;
+    padding: 10px 10px;
     color: var(--zinc-800);
-    border-bottom: 1px solid rgb(0 0 0 / 0.04);
+    border-bottom: 1px solid var(--zinc-100);
     white-space: nowrap;
   }
   .results-table tbody tr:last-child td { border-bottom: none; }
   .results-table tbody tr:hover { background: var(--zinc-50); }
   .results-table .num { text-align: right; }
-  .results-table .highlight {
-    font-weight: 600;
-    color: var(--blue-700);
-  }
-  .results-table .warn { color: #dc2626; font-weight: 600; }
-  .results-table .ok { color: #16a34a; font-weight: 600; }
+  .results-table .highlight { font-weight: 700; color: var(--accent-text); }
+  .results-table .warn { color: var(--red); font-weight: 700; }
+  .results-table .ok { color: var(--green); font-weight: 700; }
 
-  /* Info row */
+  /* Mobile: cards instead of table */
+  .result-cards { display: none; }
+
+  @media (max-width: 639px) {
+    .results-table-wrap { display: none; }
+    .result-cards { display: flex; flex-direction: column; gap: 10px; }
+  }
+
+  .result-card {
+    border: 1px solid var(--zinc-200);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .result-card-header {
+    background: var(--zinc-50);
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--zinc-100);
+  }
+  .result-card-header .year {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--zinc-900);
+    font-variant-numeric: tabular-nums;
+  }
+  .result-card-header .load-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-variant-numeric: tabular-nums;
+  }
+  .load-badge.ok { background: var(--green-light); color: var(--green); }
+  .load-badge.warn { background: var(--red-light); color: var(--red); }
+
+  .result-card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .result-card-cell {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--zinc-100);
+  }
+  .result-card-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .result-card-cell:nth-child(odd) { border-right: 1px solid var(--zinc-100); }
+  .result-card-cell.full {
+    grid-column: 1 / -1;
+    border-right: none;
+  }
+  .result-card-cell .cell-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--zinc-500);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 2px;
+  }
+  .result-card-cell .cell-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--zinc-900);
+    font-variant-numeric: tabular-nums;
+  }
+  .result-card-cell .cell-value.accent { color: var(--accent-text); }
+
   .info-row {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    padding: 12px 16px;
-    background: var(--blue-50);
+    padding: 10px 14px;
+    background: var(--zinc-50);
+    border: 1px solid var(--zinc-100);
     border-radius: var(--radius-sm);
-    font-size: 13px;
-    color: var(--zinc-700);
-    line-height: 1.5;
-    margin-top: 16px;
+    font-size: 12px;
+    color: var(--zinc-600);
+    line-height: 1.6;
+    margin-top: 14px;
   }
   .info-row svg {
-    width: 16px;
-    height: 16px;
-    color: var(--blue-600);
+    width: 14px;
+    height: 14px;
+    color: var(--zinc-400);
     flex-shrink: 0;
-    margin-top: 1px;
+    margin-top: 2px;
   }
 
-  /* Export button */
   .export-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    font-size: 13px;
-    font-weight: 500;
+    gap: 5px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
     font-family: var(--font-sans);
-    color: var(--zinc-700);
-    background: white;
+    color: var(--zinc-600);
+    background: var(--zinc-50);
     border: 1px solid var(--zinc-200);
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: border-color 0.15s, background 0.15s;
   }
-  .export-btn:hover { background: var(--zinc-50); border-color: var(--zinc-300); }
-  .export-btn:focus-visible {
-    outline: 2px solid var(--blue-600);
-    outline-offset: 2px;
-  }
-  .export-btn svg { width: 14px; height: 14px; }
+  .export-btn:hover { background: white; border-color: var(--zinc-300); }
+  .export-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .export-btn svg { width: 13px; height: 13px; }
 
-  /* Error */
   .field-error {
     font-size: 12px;
-    color: #dc2626;
+    color: var(--red);
     margin-top: 2px;
+    font-weight: 500;
   }
-  .field input.has-error { border-color: #fca5a5; }
-  .field input.has-error:focus { box-shadow: 0 0 0 3px rgb(239 68 68 / 0.12); }
+  .field input.has-error { border-color: #fca5a5; background: var(--red-light); }
+  .field input.has-error:focus { box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1); }
 
-  /* PWA install banner */
   .install-banner {
     display: none;
     background: white;
@@ -526,11 +579,7 @@
     padding-bottom: calc(12px + env(safe-area-inset-bottom, 0));
   }
   .install-banner.visible { display: flex; align-items: center; gap: 12px; }
-  .install-banner-text {
-    flex: 1;
-    font-size: 14px;
-    color: var(--zinc-700);
-  }
+  .install-banner-text { flex: 1; font-size: 14px; color: var(--zinc-700); }
   .install-banner-text strong { font-weight: 600; }
   .install-btn {
     padding: 8px 16px;
@@ -538,13 +587,12 @@
     font-weight: 600;
     font-family: var(--font-sans);
     color: white;
-    background: var(--blue-600);
+    background: var(--zinc-950);
     border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
     flex-shrink: 0;
   }
-  .install-btn:hover { background: var(--blue-700); }
   .dismiss-btn {
     width: 32px;
     height: 32px;
@@ -558,15 +606,17 @@
     flex-shrink: 0;
   }
 
-  /* Print */
   @media print {
-    .header { position: static; }
+    .header { position: static; background: white; }
+    .header h1 { color: var(--zinc-900); }
+    .header p { color: var(--zinc-500); display: block; }
     .calc-btn, .add-year-btn, .remove-year-btn, .export-btn, .install-banner { display: none !important; }
-    .section { box-shadow: none; border: 1px solid #e4e4e7; break-inside: avoid; }
+    .section { box-shadow: none; border: 1px solid var(--zinc-200); break-inside: avoid; }
     .results-section { display: block !important; }
+    .result-cards { display: none !important; }
+    .results-table-wrap { display: block !important; }
   }
 
-  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
@@ -587,22 +637,18 @@
     </div>
     <div>
       <h1>생산 CAPA 계산기</h1>
-      <p>연간 생산능력·투입인원·TACT타임 산출</p>
+      <p>연간 생산능력 · 투입인원 · TACT타임 산출</p>
     </div>
   </div>
 </header>
 
 <main class="main">
 
-  <!-- 기본정보 -->
   <div class="section">
     <div class="section-header">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <polyline points="14 2 14 8 20 8"/>
-        <line x1="16" y1="13" x2="8" y2="13"/>
-        <line x1="16" y1="17" x2="8" y2="17"/>
-        <polyline points="10 9 9 9 8 9"/>
       </svg>
       <span class="section-title">기본 정보</span>
     </div>
@@ -620,7 +666,6 @@
     </div>
   </div>
 
-  <!-- 사이클 타임 -->
   <div class="section">
     <div class="section-header">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -631,36 +676,37 @@
     </div>
     <div class="section-body">
       <div class="cycle-box">
-        <p style="font-size:13px; color:var(--zinc-500); margin-bottom:4px;">작업자 1명 기준 연속 N회 측정값을 입력하면 1회 사이클 타임을 자동 환산합니다.</p>
+        <p style="font-size:12px; color:var(--zinc-500);">작업자 1명 기준 연속 N회 측정값을 입력하면 1회 사이클 타임을 자동 환산합니다.</p>
         <div class="cycle-row">
           <div class="field">
             <label for="totalCycleTime">연속 N회 총 사이클 타임</label>
             <div class="inline-group">
-              <div class="field">
-                <input type="number" id="totalCycleTime" name="totalCycleTime" placeholder="0" min="0" step="any">
-              </div>
+              <div class="field"><input type="number" id="totalCycleTime" name="totalCycleTime" placeholder="0" min="0" step="any"></div>
               <span class="unit">초</span>
             </div>
           </div>
           <div class="field">
             <label for="cycleCount">연속 횟수 (N)</label>
             <div class="inline-group">
-              <div class="field">
-                <input type="number" id="cycleCount" name="cycleCount" placeholder="0" min="1" step="1">
-              </div>
+              <div class="field"><input type="number" id="cycleCount" name="cycleCount" placeholder="0" min="1" step="1"></div>
               <span class="unit">회</span>
             </div>
           </div>
         </div>
-        <div class="cycle-result">
-          <span>1회 사이클 타임</span>
-          <span class="value" id="singleCycleTime">— 초</span>
+        <div class="cycle-results">
+          <div class="cycle-result-row">
+            <span>1명 사이클 타임</span>
+            <span class="value" id="singleCycleTime1">— 초</span>
+          </div>
+          <div class="cycle-result-row" id="multiCycleRow" style="display:none;">
+            <span id="multiCycleLabel">—</span>
+            <span class="value" id="singleCycleTimeN">— 초</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 작업 조건 -->
   <div class="section">
     <div class="section-header">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -672,48 +718,38 @@
     <div class="section-body">
       <div class="form-grid">
         <div class="field">
-          <label for="workloadRate">작업부하율 (%)</label>
-          <p class="hint">UPH 산출 시 반영됩니다</p>
+          <label for="workloadRate">작업부하율</label>
+          <p class="hint">UPH 산출 시 반영</p>
           <div class="inline-group">
-            <div class="field">
-              <input type="number" id="workloadRate" name="workloadRate" placeholder="90" min="0" max="100" step="any">
-            </div>
+            <div class="field"><input type="number" id="workloadRate" name="workloadRate" placeholder="90" min="0" max="100" step="any"></div>
             <span class="unit">%</span>
           </div>
         </div>
         <div class="field">
           <label for="workers">투입 인원수</label>
           <div class="inline-group">
-            <div class="field">
-              <input type="number" id="workers" name="workers" placeholder="1" min="1" step="1">
-            </div>
+            <div class="field"><input type="number" id="workers" name="workers" placeholder="1" min="1" step="1"></div>
             <span class="unit">명</span>
           </div>
         </div>
         <div class="field">
           <label for="dailyHours">일일 총 근무시간</label>
           <div class="inline-group">
-            <div class="field">
-              <input type="number" id="dailyHours" name="dailyHours" placeholder="8" min="0" step="any">
-            </div>
+            <div class="field"><input type="number" id="dailyHours" name="dailyHours" placeholder="8" min="0" step="any"></div>
             <span class="unit">시간</span>
           </div>
         </div>
         <div class="field">
           <label for="breakHours">일일 제외할 쉬는 시간</label>
           <div class="inline-group">
-            <div class="field">
-              <input type="number" id="breakHours" name="breakHours" placeholder="1" min="0" step="any">
-            </div>
+            <div class="field"><input type="number" id="breakHours" name="breakHours" placeholder="1" min="0" step="any"></div>
             <span class="unit">시간</span>
           </div>
         </div>
         <div class="field">
           <label for="monthlyDays">월간 근무일수</label>
           <div class="inline-group">
-            <div class="field">
-              <input type="number" id="monthlyDays" name="monthlyDays" placeholder="22" min="1" step="1">
-            </div>
+            <div class="field"><input type="number" id="monthlyDays" name="monthlyDays" placeholder="22" min="1" step="1"></div>
             <span class="unit">일</span>
           </div>
         </div>
@@ -721,7 +757,6 @@
     </div>
   </div>
 
-  <!-- 연도별 판매계획 -->
   <div class="section">
     <div class="section-header">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -733,13 +768,10 @@
     </div>
     <div class="section-body">
       <div class="year-plan-header">
-        <div class="left">
-          <span>판매계획 수량 입력 (생산수량 = 판매수량 × 1.03)</span>
-        </div>
+        <div class="left"><span>판매수량 입력 (생산수량 = 판매수량 × 1.03)</span></div>
         <button type="button" class="add-year-btn" id="addYearBtn" aria-label="연도 추가">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"/>
-            <line x1="5" y1="12" x2="19" y2="12"/>
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
           연도 추가
         </button>
@@ -748,27 +780,15 @@
     </div>
   </div>
 
-  <!-- Calculate -->
   <button type="button" class="calc-btn" id="calcBtn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="4" y="2" width="16" height="20" rx="2"/>
-      <line x1="8" y1="6" x2="16" y2="6"/>
-      <line x1="16" y1="14" x2="16" y2="18"/>
-      <line x1="8" y1="10" x2="8" y2="10"/>
-      <line x1="12" y1="10" x2="12" y2="10"/>
-      <line x1="16" y1="10" x2="16" y2="10"/>
-      <line x1="8" y1="14" x2="8" y2="14"/>
-      <line x1="12" y1="14" x2="12" y2="14"/>
-      <line x1="8" y1="18" x2="8" y2="18"/>
-      <line x1="12" y1="18" x2="12" y2="18"/>
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
     </svg>
     산출하기
   </button>
 
-  <!-- Results -->
   <div class="results-section" id="resultsSection">
-
-    <div class="section" style="margin-top: 24px;">
+    <div class="section" style="margin-top: 20px;">
       <div class="section-header">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
@@ -787,54 +807,55 @@
       </div>
       <div class="section-body">
 
-        <div class="summary-stats" id="summaryStats">
-          <div class="stat-item">
-            <span class="stat-label">기준</span>
-            <span class="stat-value" id="kpiBasis" style="font-size:16px; line-height:1.5;">—</span>
+        <div class="kpi-grid" id="kpiGrid">
+          <div class="kpi-card basis">
+            <span class="kpi-label">기준</span>
+            <span class="kpi-value" id="kpiBasis">—</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-label">1회 사이클 타임</span>
-            <span class="stat-value" id="kpiCycleTime">—</span>
+          <div class="kpi-card">
+            <span class="kpi-label">1회 사이클 타임</span>
+            <span class="kpi-value" id="kpiCycleTime">—</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-label">UPH (부하율 반영)</span>
-            <span class="stat-value" id="kpiUPH">—</span>
+          <div class="kpi-card">
+            <span class="kpi-label">UPH (부하율 반영)</span>
+            <span class="kpi-value" id="kpiUPH">—</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-label">연간 생산CAPA</span>
-            <span class="stat-value" id="kpiAnnualCapa">—</span>
+          <div class="kpi-card">
+            <span class="kpi-label">연간 생산CAPA</span>
+            <span class="kpi-value" id="kpiAnnualCapa">—</span>
           </div>
         </div>
 
-        <!-- Year-by-year table -->
-        <div class="table-wrap" style="margin-top: 20px;">
+        <div class="results-table-wrap" style="margin-top: 18px;">
           <table class="results-table" id="resultsTable">
             <thead>
               <tr>
                 <th>연도</th>
                 <th class="num">판매계획</th>
-                <th class="num">생산수량 (×1.03)</th>
+                <th class="num">생산수량</th>
                 <th class="num">부하율</th>
-                <th class="num">TACT 타임</th>
-                <th class="num">필요 인원</th>
-                <th class="num">필요인원 충족 시 연간CAPA</th>
+                <th class="num">TACT</th>
+                <th class="num">필요인원</th>
+                <th class="num">충족 시 CAPA</th>
               </tr>
             </thead>
             <tbody id="resultsBody"></tbody>
           </table>
         </div>
 
-        <div class="info-row" style="margin-top:16px;">
+        <div class="result-cards" id="resultCards"></div>
+
+        <div class="info-row" style="margin-top:14px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <line x1="12" y1="16" x2="12" y2="12"/>
             <line x1="12" y1="8" x2="12.01" y2="8"/>
           </svg>
           <span>
-            <strong>부하율</strong>: 생산수량 ÷ 기준 연간 생산CAPA (현재 투입인원 기준)<br>
-            <strong>TACT 타임</strong>: 일일 순 가동시간 ÷ 일일 필요생산량<br>
-            <strong>필요 인원</strong>: 생산수량 달성을 위한 최소 인원수 (올림 적용)<br>
-            <strong>필요인원 충족 시 연간CAPA</strong>: 필요 인원 배치 시 연간 생산 가능 수량
+            <strong>부하율</strong> = 생산수량 ÷ 기준 연간CAPA &nbsp;
+            <strong>TACT</strong> = 일일 순가동시간 ÷ 일일 필요생산량 &nbsp;
+            <strong>필요인원</strong> = 올림(생산수량 ÷ 1인 연간산출량) &nbsp;
+            <strong>충족 시 CAPA</strong> = 필요인원 배치 시 연간 생산능력
           </span>
         </div>
 
@@ -844,16 +865,12 @@
 
 </main>
 
-<!-- Install banner -->
 <div class="install-banner" id="installBanner">
-  <div class="install-banner-text">
-    <strong>생산 CAPA 계산기</strong>를 홈 화면에 추가하세요
-  </div>
+  <div class="install-banner-text"><strong>생산 CAPA 계산기</strong>를 홈 화면에 추가하세요</div>
   <button type="button" class="install-btn" id="installBtn">설치</button>
   <button type="button" class="dismiss-btn" id="dismissBtn" aria-label="닫기">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="18" y1="6" x2="6" y2="18"/>
-      <line x1="6" y1="6" x2="18" y2="18"/>
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
     </svg>
   </button>
 </div>
@@ -862,15 +879,16 @@
 (function() {
   'use strict';
 
-  // === State ===
-  const currentYear = new Date().getFullYear();
-  let yearEntries = [];
+  var currentYear = new Date().getFullYear();
+  var yearEntries = [];
 
-  // === DOM refs ===
-  const els = {
+  var els = {
     totalCycleTime: document.getElementById('totalCycleTime'),
     cycleCount: document.getElementById('cycleCount'),
-    singleCycleTime: document.getElementById('singleCycleTime'),
+    singleCycleTime1: document.getElementById('singleCycleTime1'),
+    singleCycleTimeN: document.getElementById('singleCycleTimeN'),
+    multiCycleRow: document.getElementById('multiCycleRow'),
+    multiCycleLabel: document.getElementById('multiCycleLabel'),
     workloadRate: document.getElementById('workloadRate'),
     workers: document.getElementById('workers'),
     dailyHours: document.getElementById('dailyHours'),
@@ -881,6 +899,7 @@
     calcBtn: document.getElementById('calcBtn'),
     resultsSection: document.getElementById('resultsSection'),
     resultsBody: document.getElementById('resultsBody'),
+    resultCards: document.getElementById('resultCards'),
     kpiBasis: document.getElementById('kpiBasis'),
     kpiCycleTime: document.getElementById('kpiCycleTime'),
     kpiUPH: document.getElementById('kpiUPH'),
@@ -888,54 +907,60 @@
     exportBtn: document.getElementById('exportBtn'),
   };
 
-  // === Cycle time live calculation ===
   function updateSingleCycleTime() {
-    const total = parseFloat(els.totalCycleTime.value);
-    const count = parseInt(els.cycleCount.value, 10);
+    var total = parseFloat(els.totalCycleTime.value);
+    var count = parseInt(els.cycleCount.value, 10);
+    var workers = parseInt(els.workers.value, 10);
+    if (isNaN(workers) || workers < 1) workers = 1;
+
     if (total > 0 && count > 0) {
-      const single = total / count;
-      els.singleCycleTime.textContent = single.toFixed(2) + ' 초';
+      var single = total / count;
+      els.singleCycleTime1.textContent = single.toFixed(2) + ' 초';
+
+      if (workers > 1) {
+        var multiTime = single / workers;
+        els.multiCycleLabel.textContent = workers + '명 사이클 타임';
+        els.singleCycleTimeN.textContent = multiTime.toFixed(2) + ' 초';
+        els.multiCycleRow.style.display = 'flex';
+      } else {
+        els.multiCycleRow.style.display = 'none';
+      }
     } else {
-      els.singleCycleTime.textContent = '— 초';
+      els.singleCycleTime1.textContent = '— 초';
+      els.multiCycleRow.style.display = 'none';
     }
   }
+
   els.totalCycleTime.addEventListener('input', updateSingleCycleTime);
   els.cycleCount.addEventListener('input', updateSingleCycleTime);
+  els.workers.addEventListener('input', updateSingleCycleTime);
 
-  // === Year management ===
   function getNextYear() {
     if (yearEntries.length === 0) return currentYear;
-    return Math.max(...yearEntries.map(e => e.year)) + 1;
+    return Math.max.apply(null, yearEntries.map(function(e) { return e.year; })) + 1;
   }
 
   function renderYears() {
     els.yearRows.innerHTML = '';
     yearEntries.forEach(function(entry, idx) {
-      const row = document.createElement('div');
+      var row = document.createElement('div');
       row.className = 'year-row';
       row.innerHTML =
         '<span class="year-label">' + entry.year + '년</span>' +
         '<input type="number" placeholder="판매 계획 수량" min="0" step="1" aria-label="' + entry.year + '년 판매계획 수량" value="' + (entry.sales || '') + '">' +
         '<button type="button" class="remove-year-btn" aria-label="' + entry.year + '년 삭제">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-            '<line x1="18" y1="6" x2="6" y2="18"/>' +
-            '<line x1="6" y1="6" x2="18" y2="18"/>' +
+            '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>' +
           '</svg>' +
         '</button>';
 
       var input = row.querySelector('input');
-      input.addEventListener('input', function() {
-        yearEntries[idx].sales = this.value;
-      });
-      input.addEventListener('blur', function() {
-        yearEntries[idx].sales = this.value;
-      });
-
+      input.addEventListener('input', function() { yearEntries[idx].sales = this.value; });
+      input.addEventListener('blur', function() { yearEntries[idx].sales = this.value; });
       row.querySelector('.remove-year-btn').addEventListener('click', function() {
         yearEntries.splice(idx, 1);
         renderYears();
       });
-
       els.yearRows.appendChild(row);
     });
   }
@@ -943,17 +968,13 @@
   function addYear() {
     yearEntries.push({ year: getNextYear(), sales: '' });
     renderYears();
-    // Focus the last input
     var inputs = els.yearRows.querySelectorAll('input');
     if (inputs.length) inputs[inputs.length - 1].focus();
   }
 
   els.addYearBtn.addEventListener('click', addYear);
-
-  // Initialize with 3 years
   for (var i = 0; i < 3; i++) addYear();
 
-  // === Validation ===
   function clearErrors() {
     document.querySelectorAll('.field-error').forEach(function(el) { el.remove(); });
     document.querySelectorAll('.has-error').forEach(function(el) { el.classList.remove('has-error'); });
@@ -973,78 +994,36 @@
     var valid = true;
 
     var totalCT = parseFloat(els.totalCycleTime.value);
+    if (!(totalCT > 0)) { showError(els.totalCycleTime, '0보다 큰 값을 입력하세요'); valid = false; }
     var cycleN = parseInt(els.cycleCount.value, 10);
-    if (!(totalCT > 0)) {
-      showError(els.totalCycleTime, '0보다 큰 값을 입력하세요');
-      valid = false;
-    }
-    if (!(cycleN > 0)) {
-      showError(els.cycleCount, '1 이상의 정수를 입력하세요');
-      valid = false;
-    }
+    if (!(cycleN > 0)) { showError(els.cycleCount, '1 이상의 정수를 입력하세요'); valid = false; }
 
     var workload = parseFloat(els.workloadRate.value);
-    if (!(workload > 0 && workload <= 100)) {
-      showError(els.workloadRate, '1~100 사이의 값을 입력하세요');
-      valid = false;
-    }
+    if (!(workload > 0 && workload <= 100)) { showError(els.workloadRate, '1~100 사이의 값을 입력하세요'); valid = false; }
 
     var workers = parseInt(els.workers.value, 10);
-    if (!(workers >= 1)) {
-      showError(els.workers, '1 이상의 정수를 입력하세요');
-      valid = false;
-    }
+    if (!(workers >= 1)) { showError(els.workers, '1 이상의 정수를 입력하세요'); valid = false; }
 
     var dailyH = parseFloat(els.dailyHours.value);
-    if (!(dailyH > 0)) {
-      showError(els.dailyHours, '0보다 큰 값을 입력하세요');
-      valid = false;
-    }
+    if (!(dailyH > 0)) { showError(els.dailyHours, '0보다 큰 값을 입력하세요'); valid = false; }
 
     var breakH = parseFloat(els.breakHours.value);
-    if (isNaN(breakH) || breakH < 0) {
-      showError(els.breakHours, '0 이상의 값을 입력하세요');
-      valid = false;
-    }
-
-    if (dailyH > 0 && breakH >= dailyH) {
-      showError(els.breakHours, '쉬는 시간은 총 근무시간보다 작아야 합니다');
-      valid = false;
-    }
+    if (isNaN(breakH) || breakH < 0) { showError(els.breakHours, '0 이상의 값을 입력하세요'); valid = false; }
+    if (dailyH > 0 && breakH >= dailyH) { showError(els.breakHours, '쉬는 시간은 총 근무시간보다 작아야 합니다'); valid = false; }
 
     var monthlyD = parseInt(els.monthlyDays.value, 10);
-    if (!(monthlyD >= 1)) {
-      showError(els.monthlyDays, '1 이상의 정수를 입력하세요');
-      valid = false;
-    }
+    if (!(monthlyD >= 1)) { showError(els.monthlyDays, '1 이상의 정수를 입력하세요'); valid = false; }
 
-    // Sync year entries from DOM
     var yearInputs = els.yearRows.querySelectorAll('input');
-    yearInputs.forEach(function(inp, idx) {
-      yearEntries[idx].sales = inp.value;
-    });
-
-    var hasAnySales = false;
-    yearEntries.forEach(function(entry, idx) {
-      var sales = parseInt(entry.sales, 10);
-      if (entry.sales !== '' && sales >= 0) {
-        hasAnySales = true;
-      }
-    });
-    if (!hasAnySales) {
-      valid = false;
-      if (yearInputs.length > 0) {
-        showError(yearInputs[0], '최소 1개 연도의 판매계획을 입력하세요');
-      }
-    }
+    yearInputs.forEach(function(inp, idx) { yearEntries[idx].sales = inp.value; });
+    var hasAnySales = yearEntries.some(function(e) { return e.sales !== '' && parseInt(e.sales, 10) >= 0; });
+    if (!hasAnySales) { valid = false; if (yearInputs.length) showError(yearInputs[0], '최소 1개 연도의 판매계획을 입력하세요'); }
 
     return valid;
   }
 
-  // === Calculation ===
   function calculate() {
     if (!validate()) {
-      // Scroll to first error
       var firstErr = document.querySelector('.has-error');
       if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
@@ -1052,66 +1031,46 @@
 
     var totalCT = parseFloat(els.totalCycleTime.value);
     var cycleN = parseInt(els.cycleCount.value, 10);
-    var singleCT = totalCT / cycleN; // 1회 사이클 타임 (초)
+    var singleCT = totalCT / cycleN;
 
-    var workloadRate = parseFloat(els.workloadRate.value) / 100; // 비율로 변환
+    var workloadRate = parseFloat(els.workloadRate.value) / 100;
     var workers = parseInt(els.workers.value, 10);
     var dailyHours = parseFloat(els.dailyHours.value);
     var breakHours = parseFloat(els.breakHours.value);
     var monthlyDays = parseInt(els.monthlyDays.value, 10);
 
-    // 일일 순 가동시간 (초)
     var dailyNetSeconds = (dailyHours - breakHours) * 3600;
-
-    // UPH = (3600 / 사이클타임) * 작업부하율
     var uph = (3600 / singleCT) * workloadRate;
-
-    // 일일 생산량 (1인) = UPH * 순 가동시간(h)
     var dailyNetHours = dailyHours - breakHours;
     var dailyOutputPerWorker = uph * dailyNetHours;
-
-    // 일일 생산량 (투입인원 기준)
     var dailyOutputTotal = dailyOutputPerWorker * workers;
-
-    // 연간 근무일수
     var annualDays = monthlyDays * 12;
-
-    // 연간 생산CAPA (현재 투입인원 기준)
     var annualCapa = Math.floor(dailyOutputTotal * annualDays);
 
-    // KPIs
     els.kpiBasis.innerHTML =
-      '투입인원 <strong>' + workers + '명</strong><br>' +
-      '순가동 <strong>' + dailyNetHours.toFixed(1) + 'h/일</strong><br>' +
-      '연간 <strong>' + annualDays + '일</strong>';
-    els.kpiCycleTime.innerHTML = singleCT.toFixed(2) + ' <span class="stat-unit">초</span>';
-    els.kpiUPH.innerHTML = uph.toFixed(1) + ' <span class="stat-unit">개/시간</span>';
-    els.kpiAnnualCapa.innerHTML = annualCapa.toLocaleString() + ' <span class="stat-unit">개/년</span>';
+      '투입 <strong>' + workers + '명</strong> · 순가동 <strong>' + dailyNetHours.toFixed(1) + 'h</strong> · 연 <strong>' + annualDays + '일</strong>';
+    els.kpiCycleTime.innerHTML = singleCT.toFixed(2) + ' <span class="unit">초</span>';
+    els.kpiUPH.innerHTML = uph.toFixed(1) + ' <span class="unit">개/h</span>';
+    els.kpiAnnualCapa.innerHTML = annualCapa.toLocaleString() + ' <span class="unit">개</span>';
 
-    // Year-by-year results
     var tbody = els.resultsBody;
     tbody.innerHTML = '';
+    els.resultCards.innerHTML = '';
 
     yearEntries.forEach(function(entry) {
       var salesPlan = parseInt(entry.sales, 10);
       if (isNaN(salesPlan) || salesPlan < 0) return;
 
       var productionQty = Math.ceil(salesPlan * 1.03);
-
-      // 부하율 = 생산수량 ÷ 기준 연간CAPA (현재 투입인원 기준)
       var loadRate = (productionQty / annualCapa) * 100;
-
       var dailyRequired = productionQty / annualDays;
       var tactTime = dailyNetSeconds / dailyRequired;
-
       var requiredWorkers = Math.ceil(productionQty / (dailyOutputPerWorker * annualDays));
       if (requiredWorkers < 1) requiredWorkers = 1;
-
-      // 필요인원 충족 시 연간CAPA
       var yearCapaWithRequired = Math.floor(dailyOutputPerWorker * requiredWorkers * annualDays);
-
       var loadClass = loadRate > 100 ? 'warn' : 'ok';
 
+      // Table row (PC)
       var tr = document.createElement('tr');
       tr.innerHTML =
         '<td>' + entry.year + '</td>' +
@@ -1122,9 +1081,40 @@
         '<td class="num highlight">' + requiredWorkers + '명</td>' +
         '<td class="num">' + yearCapaWithRequired.toLocaleString() + '</td>';
       tbody.appendChild(tr);
+
+      // Card (mobile)
+      var card = document.createElement('div');
+      card.className = 'result-card';
+      card.innerHTML =
+        '<div class="result-card-header">' +
+          '<span class="year">' + entry.year + '년</span>' +
+          '<span class="load-badge ' + loadClass + '">부하율 ' + loadRate.toFixed(1) + '%</span>' +
+        '</div>' +
+        '<div class="result-card-body">' +
+          '<div class="result-card-cell">' +
+            '<div class="cell-label">판매계획</div>' +
+            '<div class="cell-value">' + salesPlan.toLocaleString() + '</div>' +
+          '</div>' +
+          '<div class="result-card-cell">' +
+            '<div class="cell-label">생산수량 (×1.03)</div>' +
+            '<div class="cell-value">' + productionQty.toLocaleString() + '</div>' +
+          '</div>' +
+          '<div class="result-card-cell">' +
+            '<div class="cell-label">TACT 타임</div>' +
+            '<div class="cell-value">' + tactTime.toFixed(2) + '초</div>' +
+          '</div>' +
+          '<div class="result-card-cell">' +
+            '<div class="cell-label">필요 인원</div>' +
+            '<div class="cell-value accent">' + requiredWorkers + '명</div>' +
+          '</div>' +
+          '<div class="result-card-cell full">' +
+            '<div class="cell-label">필요인원 충족 시 연간CAPA</div>' +
+            '<div class="cell-value">' + yearCapaWithRequired.toLocaleString() + '</div>' +
+          '</div>' +
+        '</div>';
+      els.resultCards.appendChild(card);
     });
 
-    // Show results
     els.resultsSection.classList.add('visible');
     setTimeout(function() {
       els.resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1133,7 +1123,6 @@
 
   els.calcBtn.addEventListener('click', calculate);
 
-  // === CSV Export ===
   function exportCSV() {
     var itemName = document.getElementById('itemName').value || '-';
     var taskName = document.getElementById('taskName').value || '-';
@@ -1164,14 +1153,12 @@
 
   els.exportBtn.addEventListener('click', exportCSV);
 
-  // === PWA Install ===
   var deferredPrompt = null;
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();
     deferredPrompt = e;
     document.getElementById('installBanner').classList.add('visible');
   });
-
   document.getElementById('installBtn').addEventListener('click', function() {
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -1181,12 +1168,10 @@
       });
     }
   });
-
   document.getElementById('dismissBtn').addEventListener('click', function() {
     document.getElementById('installBanner').classList.remove('visible');
   });
 
-  // === Service Worker Registration ===
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker.register('sw.js').catch(function() {});
