@@ -1,0 +1,24 @@
+{
+  "name": "생산 CAPA 계산기",
+  "short_name": "생산CAPA",
+  "description": "UPH, 연간 생산능력, 투입인원, TACT타임 산출 도구",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#1e40af",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
