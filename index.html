@@ -1048,7 +1048,9 @@
     var annualCapa = Math.floor(dailyOutputTotal * annualDays);
 
     els.kpiBasis.innerHTML =
-      '투입 <strong>' + workers + '명</strong> · 순가동 <strong>' + dailyNetHours.toFixed(1) + 'h</strong> · 연 <strong>' + annualDays + '일</strong>';
+      '<span style="display:block;">투입인원 <strong>' + workers + '명</strong></span>' +
+      '<span style="display:block;">순가동 <strong>' + dailyNetHours.toFixed(1) + 'h/일</strong></span>' +
+      '<span style="display:block;">연간 <strong>' + annualDays + '일</strong></span>';
     var workerCycleTime = singleCT / workers;
     els.kpiCycleTime.innerHTML =
       '1명 <strong>' + singleCT.toFixed(2) + '</strong> <span class="unit">초</span><br>' +
